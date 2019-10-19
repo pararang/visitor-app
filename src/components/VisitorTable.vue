@@ -35,11 +35,11 @@
                 </td>
                 <td v-else>{{visitor.visit_at}}</td>
 
-                <td v-if="editing === visitor.id">
+                <td v-if="editing === visitor.id" class="container">
                     <button @click="editVisitor(visitor)">Save</button>
                     <button class="muted-button" @click="editing = null">Cancel</button>
                 </td>
-                <td v-else>
+                <td v-else class="container">
                     <button @click="editMode(visitor.id)">Edit</button>
                     <button @click="$emit('delete:visitor', visitor.id)">Delete</button>
                 </td>
@@ -82,5 +82,8 @@
     }
     .empty-table {
         text-align: center;
+    }
+    .container {
+        display: flex;
     }
 </style>
