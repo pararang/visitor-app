@@ -26,6 +26,8 @@
                     :class="{ 'has-error': submitting && invalidPhone }"
                     v-model="visitor.phone"
                     @focus="clearStatus"
+                    minlength="9"
+                    maxlength="15"
             />
 
             <p v-if="error && submitting" class="error-message">
