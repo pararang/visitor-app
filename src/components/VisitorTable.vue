@@ -35,11 +35,11 @@
                 </td>
                 <td v-else>{{visitor.visit_at}}</td>
 
-                <td v-if="editing === visitor.id" class="container">
+                <td v-if="editing === visitor.id" class="button-container">
                     <button @click="editVisitor(visitor)">Save</button>
                     <button class="muted-button" @click="editing = null">Cancel</button>
                 </td>
-                <td v-else class="container">
+                <td v-else class="button-container">
                     <button @click="editMode(visitor.id)">Edit</button>
                     <button @click="$emit('delete:visitor', visitor.id)">Delete</button>
                 </td>
@@ -75,7 +75,8 @@
 
 <style scoped>
     button {
-        margin: 0.5rem 0.5rem 0 0;
+        margin: 0.5rem;
+        max-height: 40px;
     }
     input {
         margin: 0;
@@ -83,7 +84,21 @@
     .empty-table {
         text-align: center;
     }
-    .container {
+
+    .button-container {
         display: flex;
+        align-items: center
+    }
+    
+    td {
+        min-height: 90px;
+    }
+
+    thead th, td {
+        border-bottom: none;
+    }
+    tr {
+        border-top: 1px solid #dedede;
+        border-bottom: 1px solid #dedede;
     }
 </style>
