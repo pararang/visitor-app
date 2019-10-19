@@ -92,7 +92,7 @@
                 return this.visitor.address === ''
             },
             invalidPhone() {
-                return this.visitor.phone === ''
+                return this.visitor.phone === '' || !this.visitor.phone.match(/^\d{9,15}$/)
             },
         }
     }
