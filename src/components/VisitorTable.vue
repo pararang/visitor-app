@@ -35,11 +35,11 @@
                 </td>
                 <td v-else>{{visitor.visit_at}}</td>
 
-                <td v-if="editing === visitor.id" class="container">
+                <td v-if="editing === visitor.id">
                     <button @click="editVisitor(visitor)">Save</button>
                     <button class="muted-button" @click="editing = null">Cancel</button>
                 </td>
-                <td v-else class="container">
+                <td v-else >
                     <button @click="editMode(visitor.id)">Edit</button>
                     <button @click="$emit('delete:visitor', visitor.id)">Delete</button>
                 </td>
