@@ -1,24 +1,6 @@
-# vue-test
+# Visitor App with VueJS
 
-## Project setup
-```
-npm install
-```
+Write an visitor app with Vue JS is inspired from https://github.com/taniarascia/vue-tutorial.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Demo
+See [Demo](https://pararang.github.io/visitor-app/).
