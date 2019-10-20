@@ -41,7 +41,7 @@
                 </td>
                 <td v-else class="button-container">
                     <button @click="editMode(visitor.id)">Edit</button>
-                    <button @click="$emit('delete:visitor', visitor.id)">Delete</button>
+                    <button @click="deleteVisitor(visitor)">Delete</button>
                 </td>
             </tr>
             </tbody>
