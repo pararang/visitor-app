@@ -68,6 +68,11 @@
                 if (visitor.name === '' || visitor.address === '') return
                 this.$emit('edit:visitor', visitor.id, visitor)
                 this.editing = null
+            },
+            deleteVisitor(visitor) {
+                if (confirm("Are you sure you want to delete?")) {
+                    this.$emit('delete:visitor', visitor.id);
+                }
             }
         }
     }
