@@ -65,7 +65,7 @@
                     return
                 }
                 let currentDate = new Date();
-                this.visitor.visit_at = dateFormat(currentDate, "dd-mm-yyyy HH:MM:ss Z");
+                this.visitor.visit_at = dateFormat(currentDate, "dd-mm-yyyy HH:MM:ss");
                 this.$emit('add:visitor', this.visitor)
                 this.$refs.first.focus()
 
