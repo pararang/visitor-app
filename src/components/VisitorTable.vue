@@ -40,8 +40,8 @@
                     <button class="muted-button" @click="editing = null">Cancel</button>
                 </td>
                 <td v-else class="button-container">
-                    <button @click="editMode(visitor.id)">Edit</button>
-                    <button @click="deleteVisitor(visitor)">Delete</button>
+                    <button @click="editMode(visitor.id)" class="warning">Edit</button>
+                    <button @click="deleteVisitor(visitor)" class="danger">Delete</button>
                 </td>
             </tr>
             </tbody>
