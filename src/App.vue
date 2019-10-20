@@ -6,9 +6,10 @@
       </div>
       <div class="container">
         <visitor-table
-          :visitors="visitors"
-          @delete:visitor="deleteVisitor"
-          @edit:visitor="editVisitor"
+                :visitors="visitors"
+                :noOfVisitorsInPage="noOfVisitorsInPage"
+                @delete:visitor="deleteVisitor"
+                @edit:visitor="editVisitor"
         />
       </div>
     </div>
@@ -26,7 +27,8 @@
         },
         data() {
             return {
-                visitors: []
+                visitors: [],
+                noOfVisitorsInPage: 5
             }
         },
         methods: {
