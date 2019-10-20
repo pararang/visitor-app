@@ -1,12 +1,16 @@
 <template>
-    <div id="app" class="small-container">
+    <div id="app">
+      <div class="small-container">
         <h1>Visitors</h1>
         <visitor-form @add:visitor="addVisitor"/>
+      </div>
+      <div class="container">
         <visitor-table
-                :visitors="visitors"
-                @delete:visitor="deleteVisitor"
-                @edit:visitor="editVisitor"
+          :visitors="visitors"
+          @delete:visitor="deleteVisitor"
+          @edit:visitor="editVisitor"
         />
+      </div>
     </div>
 </template>
 
