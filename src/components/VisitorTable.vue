@@ -41,7 +41,7 @@
                 </td>
                 <td v-else class="container">
                     <button @click="editMode(visitor.id)">Edit</button>
-                    <button @click="$emit('delete:visitor', visitor.id)">Delete</button>
+                    <button @click="deleteVisitor(visitor)">Delete</button>
                 </td>
             </tr>
             </tbody>
@@ -68,6 +68,11 @@
                 if (visitor.name === '' || visitor.address === '') return
                 this.$emit('edit:visitor', visitor.id, visitor)
                 this.editing = null
+            },
+            deleteVisitor(visitor) {
+                if (confirm("Are you sure you want to delete?")) {
+                    this.$emit('delete:visitor', visitor.id);
+                }
             }
         }
     }
