@@ -11,10 +11,17 @@
                 <th>Phone</th>
                 <th>Visit at</th>
                 <th>Actions</th>
+                <th v-if="VisitorRecords.length >= 5">
+                    Show rows: 
+                    <select id="recordsToShow" v-model="recordsToShow">
+                        <option :value="0" >All</option>
+                        <option :value="opt" v-for="(opt, index) in recordLimit" :key="index">{{ opt }}</option>
+                    </select>
+                </th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="visitor in visitors" :key="visitor.id">
+            <tr v-for="visitor in VisitorRecords" :key="visitor.id">
                 <td v-if="editing === visitor.id">
                     <input type="text" v-model="visitor.name"/>
                 </td>
@@ -57,7 +64,19 @@
         },
         data() {
             return {
-                editing: null
+                editing: null,
+                recordsToShow: 5,   // Default no. of rows to show
+                recordLimit: [5,10,20,50], // Limits for the pagination filter
+            }
+        },
+        computed:{
+            // Filter the visitor data based on pagination
+            VisitorRecords(){
+                let visitors = this.visitors
+                // If pagination is set
+                if (this.recordsToShow) visitors = visitors.filter((obj, key) => key < this.recordsToShow)
+
+                return visitors
             }
         },
         methods: {
