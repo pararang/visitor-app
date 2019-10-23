@@ -28,7 +28,7 @@
                 <td v-if="editing === visitor.id">
                     <input type="text" v-model="visitor.phone" />
                 </td>
-                <td v-else>{{visitor.phone}}</td>
+                <td v-else>{{formatPhone(visitor.phone)}}</td>
 
                 <td v-if="editing === visitor.id">
                     <input type="text" v-model="visitor.visit_at" />
@@ -73,7 +73,13 @@
                 if (confirm("Are you sure you want to delete?")) {
                     this.$emit('delete:visitor', visitor.id);
                 }
-            }
+            },
+            formatPhone(phn){
+              let areaCode  = phn.slice(0,3)
+              let nxx       = phn.slice(3,6)
+              let ext       = phn.slice(6,11)
+              return `(${areaCode}) ${nxx}-${ext}`
+            },
         }
     }
 </script>
@@ -94,7 +100,7 @@
         display: flex;
         align-items: center
     }
-    
+
     td {
         min-height: 90px;
     }

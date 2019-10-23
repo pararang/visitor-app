@@ -1,6 +1,3 @@
-<!--<component @name-of-emitted-event="methodToCallOnceEmitted">-->
-
-<!--</component>-->
 <template>
     <div id="visitor-form">
         <form @submit.prevent="handleSubmit">
