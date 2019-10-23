@@ -3,6 +3,7 @@
         <p v-if="visitors.length < 1" class="empty-table">
             No visitors
         </p>
+        
         <table v-else class="contain-table">
             <thead>
             <tr>
@@ -11,7 +12,7 @@
                 <th>Phone</th>
                 <th>Visit at</th>
                 <th>Actions</th>
-                <th v-if="VisitorRecords.length >= 5">
+                <th>
                     Show rows: 
                     <select id="recordsToShow" v-model="recordsToShow">
                         <option :value="0" >All</option>
@@ -52,6 +53,18 @@
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <p v-if="PaginationPages >= 1">
+                            <button v-for="Page in PaginationPages" :key="Page" @click="currentPage = Page">
+                                {{ Page }}
+                            </button>
+                        </p>
+                    </td>
+                </tr>
+            
+            </tfoot>
         </table>
     </div>
 </template>
@@ -65,18 +78,52 @@
         data() {
             return {
                 editing: null,
-                recordsToShow: 5,   // Default no. of rows to show
-                recordLimit: [5,10,20,50], // Limits for the pagination filter
+                recordsToShow: 0,   // Default no. of rows to show
+                recordLimit: [2,5,10,20,50], // Limits for the pagination filter,
+                currentPage: 1
+            }
+        },
+        watch:{
+            // Reset the current pagination number if number of records is changed
+            recordsToShow(){
+                this.currentPage = 1
             }
         },
         computed:{
             // Filter the visitor data based on pagination
             VisitorRecords(){
-                let visitors = this.visitors
-                // If pagination is set
-                if (this.recordsToShow) visitors = visitors.filter((obj, key) => key < this.recordsToShow)
+                let visitors = this.visitors;
+
+                // If pagination page is set
+                if (this.currentPage > 0 && this.recordsToShow) {
+                    let endIndex = this.currentPage * this.recordsToShow
+                    let startIndex = endIndex - this.recordsToShow
+
+                    visitors = visitors.filter((obj, key) => key >= startIndex && key < endIndex)
+
+                }else if (this.recordsToShow) {
+                    // If only pagination is set
+                    visitors = visitors.filter((obj, key) => key < this.recordsToShow)
+                }
 
                 return visitors
+            },
+
+            // Creates the page buttons for pagination
+            PaginationPages(){
+                let returnVal = []
+                if(this.VisitorRecords.length > 0 && this.recordsToShow > 0){
+                    if(parseInt(this.RecordPerPage) >= 1){
+                        for(let i = 1; i <= this.RecordPerPage; i++) returnVal.push(i)
+                    }
+                }
+                return returnVal.length
+            },
+
+            // Returns how many pages should be made
+            RecordPerPage(){
+                const numToFill = this.visitors.length / this.recordsToShow;
+                return (numToFill >= 1) ? Math.ceil(numToFill) : 1
             }
         },
         methods: {
