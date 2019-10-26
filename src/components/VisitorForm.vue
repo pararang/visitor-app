@@ -79,7 +79,17 @@
             clearStatus() {
                 this.success = false
                 this.error = false
-            }
+            },
+            // Validate phone
+            // Following formats are valid with the coded regex
+            // '1234567890'         // true
+            // '1234567890 '        // true
+            // '(078)789-8908'      // true
+            // '123-345-3456'       // true
+            validatePhone(phone) {
+                const regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                return regex.test(phone)
+            },
         },
         computed: {
             invalidName() {
@@ -89,7 +99,7 @@
                 return this.visitor.address === ''
             },
             invalidPhone() {
-                return this.visitor.phone === '' || !this.visitor.phone.match(/^\d{9,15}$/)
+                return this.visitor.phone === '' || !this.validatePhone(this.visitor.phone)
             },
         }
     }
