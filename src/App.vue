@@ -18,12 +18,11 @@
 <script>
     import VisitorTable from '@/components/VisitorTable.vue'
     import VisitorForm from "./components/VisitorForm";
-
     export default {
         name: 'app',
         components: {
             VisitorForm,
-            VisitorTable,
+            VisitorTable
         },
         data() {
             return {
@@ -33,6 +32,7 @@
         },
         methods: {
             addVisitor(visitor) {
+                
                 let lastId = this.visitors.length > 0 ?
                     this.visitors[this.visitors.length - 1].id :
                     0;

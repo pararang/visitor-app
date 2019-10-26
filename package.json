@@ -10,7 +10,8 @@
   "dependencies": {
     "core-js": "^3.1.2",
     "dateformat": "^3.0.3",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-masked-input": "^0.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
