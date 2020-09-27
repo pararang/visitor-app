@@ -102,10 +102,7 @@
                 })
             },
             formatPhone(phn) {
-                let areaCode = phn.slice(0, 3)
-                let nxx = phn.slice(3, 6)
-                let ext = phn.slice(6, 11)
-                return `(${areaCode}) ${nxx}-${ext}`
+                return phn
             },
         }
     }

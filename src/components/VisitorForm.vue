@@ -18,12 +18,19 @@
                     @focus="clearStatus"
             />
             <label>Visitor Phone Number</label>
-            <input
+            <!-- <input
                     type="number"
                     :class="{ 'has-error': submitting && invalidPhone }"
                     v-model="visitor.phone"
                     @focus="clearStatus"
-            />
+            /> -->
+            <masked-input 
+            v-model="visitor.phone" 
+            mask="\+\(11) (111) 111-1111" 
+            :class="{ 'has-error': submitting && invalidPhone }" 
+            placeholder="Phone number" 
+            @focus="clearStatus"
+            type="tel" />
 
             <p v-if="error && submitting" class="error-message">
                 ❗ Please fill out all required fields
@@ -38,6 +45,7 @@
 
 <script>
     var dateFormat = require('dateformat');
+    import MaskedInput from 'vue-masked-input'
     export default {
         name: 'visitor-form',
         data() {
@@ -89,8 +97,11 @@
                 return this.visitor.address === ''
             },
             invalidPhone() {
-                return this.visitor.phone === '' || !this.visitor.phone.match(/^\d{9,15}$/)
+                return this.visitor.phone === '' || this.visitor.phone.indexOf('_') > -1
             },
+        },
+        components:{
+            MaskedInput 
         }
     }
 </script>
